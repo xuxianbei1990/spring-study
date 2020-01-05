@@ -1,0 +1,8 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 使用静态工厂方式实例化 -->
+	<!-- 使用有参数构造参数 -->
+	<bean id="StaticFactoryEarthWill" class="spring.helloworld.StaticFactoryEarthWill"
+		factory-method="getInstance"></bean>
+</beans>

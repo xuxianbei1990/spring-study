@@ -1,0 +1,67 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<import resource="beansStaticFactory.xml"></import>
+	<import resource="beansFactory.xml"></import>
+	<bean id="springHelloWorld" class="spring.helloworld.impl.SpringHelloWorld">
+		<!-- 添加类的属性 -->
+		<property name="usercode" value="admin"></property>
+		<property name="userpswd" value="admin"></property>
+		<!-- 属性为引用类型 -->
+		<property name="strutshelloworld" ref="strutshelloworld"></property>
+		<!-- 添加数组 两种写法 -->
+		<property name="names" value="zhang,san,lisi,wagnwu"></property>
+		<property name="namesList">
+			<list>
+				<value>zhang,san</value>
+				<value>lisi</value>
+				<value>wangwu</value>
+			</list>
+		</property>
+		<!-- list集合 集合如果使用泛型，只能存储相同类型的元素，不使用泛型，可以存储不同类型的元素 -->
+		<property name="nameList">
+			<list>
+				<value>zhang,san</value>
+				<value>lisi</value>
+				<value>wangwu</value>
+			</list>
+		</property>
+		<!-- 属性为map集合时，需要使用map标签 -->
+		<property name="map">
+			<map>
+				<entry key="hello" value="world"></entry>
+				<entry key-ref="strutshelloworld" value-ref="strutshelloworld"></entry>
+			</map>
+		</property>
+		<!--属性为Properties集合类型 hashtable -->
+		<property name="props">
+			<props>
+				<prop key="url">jdbc:oracle:thin:@192.168.1.27:1521:ljh</prop>
+				<prop key="driverName">oracle.jdbc.driver.OracleDriver</prop>
+				<prop key="username">scott</prop>
+				<prop key="password">tiger</prop>
+			</props>
+
+		</property>
+		<!-- 框架会根据制定的参数个数，type制定的类型，index制定的先后顺序来查找我们想要的构造方法 <constructor-arg value="admin"></constructor-arg> -->
+		<constructor-arg value="admin" index="0"></constructor-arg>
+		<constructor-arg value="22" type="int" index="1"></constructor-arg>
+	</bean>
+	<!--bean实例化有哪些方式 -->
+	<!-- 1.类构造方法实例化 -->
+	<bean id="Orochi" class="spring.helloworld.impl.Orochi"></bean>
+	<!-- 2.静态工厂方法实例化（简单工厂模式） 参考beanStaticFactory.xml-->
+	<!-- 3.先创建工厂实例bean3Facory，再通/过工厂实例创建目标bean实例 -->
+<!-- 	<bean id="bean3Factory" class="cn.itcast.spring.b_instance.Bean3Factory"></bean> -->
+<!-- 	<bean id="bean3" factory-bean="bean3Factory" factory-method="getBean3"></bean> -->
+
+
+	<!-- 拓展了解 autowire 自动装备 autowire="byName 目标对象中的属性会根据名称 在整个Spring环境中查找<bean>标签的id属性值: 
+		<bean id="loginAction"class="com.ljh.struts2.action.LoginAction"autowire="byName" 
+		></bean> autowire="byType"： 目标对象中的属性会根据类型在整个spring环境中查找<bean>标签的class属性值 -->
+	<bean id="strutshelloworld" class="spring.helloworld.impl.StrutsHelloWorld"></bean>
+	<bean id="helloWorldService" class="spring.helloworld.HelloWorldService">
+		<property name="helloWorld" ref="springHelloWorld">
+		</property>
+	</bean>
+</beans>
