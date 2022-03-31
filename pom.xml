@@ -8,7 +8,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- spring框架版本号 其中包括 spring-webmvc -->
-		<spring.version>4.3.1.RELEASE</spring.version>
+		<spring.version>5.3.18</spring.version>
 		<spring.security.version>4.2.2.RELEASE</spring.security.version>
 		<!-- 日志框架版本 -->
 		<slf4j.log4j.version>1.7.21</slf4j.log4j.version>
